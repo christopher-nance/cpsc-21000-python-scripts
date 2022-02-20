@@ -3,6 +3,17 @@
 # Feb. 20th, 2022
 # Text Analyzer
 
+print("File has been loaded into memory...\n")
+print('''
+**********************************************************************
+                          TEXT ANALYZER V1.0
+**********************************************************************
+This program first asks you to enter the name of a text file. It will
+load the file into memory. It will then give you a set of options
+to
+choose from that will enable you to learn more about the contents of
+the file.
+''')
 
 ## VARIABLES
 input_validated = False
@@ -107,4 +118,8 @@ while user_option != 6:
     output_file.close()
     user_option = menu_options()
 
-print("Goodbye, thanks for using my program!")
+print('''
+**********************************************************************
+                  Thank you for using this program.
+**********************************************************************
+''')
