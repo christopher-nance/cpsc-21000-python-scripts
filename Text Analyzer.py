@@ -3,7 +3,6 @@
 # Feb. 20th, 2022
 # Text Analyzer
 
-print("File has been loaded into memory...\n")
 print('''
 **********************************************************************
                           TEXT ANALYZER V1.0
@@ -42,8 +41,8 @@ def menu_options(): # Ask, Validate and Return the user option. Shows mneu too.
             user_option = int(input("Select a Menu Option: "))
             if user_option in menu_options_table: break
             print("That is NOT a valid menu option.\n")
-        except ValueError as e:
-            print("ERROR: You need to select an integer:", e)
+        except ValueError as error:
+            print("ERROR: You need to select an integer:", error, "\n")
     return user_option # Return the user_option AFTER validation.
 
 
@@ -53,11 +52,11 @@ while input_validated == False:
         input_file = input("Enter the name of the file you want to open: ")
         output_file = open(input_file, 'r')
         input_validated = True
-        print("Good to parse")
+        print("File has been loaded into memory!\n")
     except FileNotFoundError as error:
-        print("File Not Found:", error)
+        print("File Not Found:", error, "\n")
     except Exception as error:
-        print("No good:", error)
+        print("No good:", error, "\n")
     
 
 ## MAIN PROGRAM
@@ -85,7 +84,7 @@ while user_option != 6:
                 index_2 = int(input("Please enter the index of the last character to include: "))
                 valid_indexes = True
             except ValueError as error:
-                print("ERROR: The index MUST be an integer, not a letter.\n")
+                print("ERROR: The index MUST be an integer, not a letter.", error, "\n")
         # Validation complete, use index_1 and index_2 to splice string.
         print(output_file_string[index_1:index_2+1])
     elif user_option == 3:
