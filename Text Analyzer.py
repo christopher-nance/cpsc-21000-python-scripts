@@ -109,8 +109,7 @@ while user_option != 6:
         number_of_characters = 0
         for line in output_file:
             for char in line:
-                if char != '' and char != ' ':
-                    number_of_characters += 1
+                number_of_characters += 1
         print("Thre are", str(number_of_characters), "charcaters in the file.")
         output_file.close()
     
