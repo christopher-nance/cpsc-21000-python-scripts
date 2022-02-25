@@ -1,6 +1,6 @@
 # Python Scripts
 ## Developer: Chris Nance
-## License: MIT
+## License: None, use whatever for whatever. I don't care.
 
 ## Description:
 
