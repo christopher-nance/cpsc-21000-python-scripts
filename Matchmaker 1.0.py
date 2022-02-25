@@ -36,10 +36,12 @@ for question_num in range(0,5):
     while user_answer not in [1,2,3,4,5]:
         try:
             user_answer = int(input('Your Answer (From 1 to 5): '))
+            if user_answer in [1,2,3,4,5]: break # Break on condition being met so error print does not happen.
         except ValueError as error:
             print("[ERROR]: Sorry, you MUST enter an INTEGER from 1 to 5:", error)
         except Exception as error: 
             print("[ERROR]: There was an unknown error. Please try entering in an integer from 1 to 5:", error)
+        print("[ERROR]: You need to enter an INTEGER from 1 to 5...") 
     
     user_score += user_answer * weight
 
