@@ -15,10 +15,14 @@ def banner(type):
 ******************************************************************************************''')
         else:
             print("ERROR: Passed argument <type> must be either 'intro' or 'closing'. It was'", str(type) + "' for function <banner>.")
+            return 2
+        return 0
     except ValueError as error:
         print("ERROR: Passed argument <type> must be a string for function <banner>.")
+        return 1
     except Exception as error:
         print("ERROR: There was an unknown error in function <banner>:", error)
+        return 1
 
 def batting_avg(hits, atBats):
     print("Calculating Batting Average...")
