@@ -9,6 +9,7 @@ def banner(type):
     Welcome to Baseball Statistics. This program reads a file that contains statistics for
     various players from the 2021 season. It will then calculate and print statistics for
     hitters and then for pitchers.\n''')
+            input("\nPress ENTER to begin...\n\n")
         elif type.lower() == 'closing':
             print('''******************************************************************************************
                 THANKS. SEE YOU AT THE BALLPARK (if the lockout ends).

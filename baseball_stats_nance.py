@@ -11,12 +11,13 @@ from time import sleep
 
 
 ## VARIABLES
-input_validated = True
-input_file = r'C:\Users\chris\source\Lewis\cpsc-21000-python-scripts\Test Objects\stats.txt'
-output_file = open(input_file, 'r')
+input_validated = False
+input_file = ''
+output_file = ''
 
 
 ## FILE INPUT VALIDATION
+banner('intro')
 while input_validated == False:
     try:
         input_file = input("Enter the name of stats file: ")
@@ -33,8 +34,8 @@ while input_validated == False:
 Hitters, HitterStatsTitles = [], [['First Name', 'Last Name', 'Avg', 'OBP', 'HRR', 'SP', 'ISO', 'OPS']]
 Pitchers, PitcherStatsTitles = [], [['First Name', 'Last Name', 'ERA', 'WHIP']]
 
+
 ## MAIN SCRIPT
-banner('intro')
 while True: # Broken with 'break' instead of a variable two lines down...
     line = output_file.readline().strip()
     if line == '': break
