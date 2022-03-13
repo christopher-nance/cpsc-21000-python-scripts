@@ -25,9 +25,9 @@ while input_validated == False:
         input_validated = True
         print("File has been loaded into memory!\n")
     except FileNotFoundError as error:
-        print("File Not Found:", error, "\n")
+        print("[ERROR] File Not Found:", error, "\n")
     except Exception as error:
-        print("No good:", error, "\n")
+        print("[ERROR] No good:", error, "\n")
 
 
 ## TABLES/LISTS

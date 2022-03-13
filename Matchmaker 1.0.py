@@ -1,36 +1,45 @@
-# Match-Maker.py
+#title           :matchmaker_nance.py
+#description     :This will ask a series of questionsd and determine match %.
+#author          :Chris Nance
+#date            :20220313
+#version         :1.0
+#usage           :python matchmaker_nance.py
+#notes           :
+#python_version  :3.10
+#==============================================================================
 
-# Christopher Nance
-# Prof. Pogue
-# 2/25/2022
-# Version 1.0
-
-
-## MODULES/LIBRARIES
-from random import randint
-from time import sleep
 
 
 ## VARIABLES
 user_score = 0
 user_answer = 0
+total_available = 0
 
 
 ## DICTIONARIES & TABLES
 questionAndAnswerDict = (
 #   ['QUESTION', SCORE, WEIGHT] 
-    ['question 1 s=1', 1, 1],
-    ['question 2 s=2', 2, 3],
-    ['question 3 s=3', 3, 2],
-    ['question 4 s=4', 4, 1],
-    ['question 5 s=5', 5, 2],
+    ['iPhone is better than Android', 4, 1],
+    ['I prefer the outdoors rather than being inside', 4, 3],
+    ['Computer Science is one of the coolest fields of study', 5, 3],
+    ['Data science is really fun', 1, 2],
+    ['I like all four seasons rather than it just being hot all year', 2, 2],
 )
 
 
+## HEADER
+print('''
+--------------------------------------
+--          MATCHMAKER 1.0          --
+--------------------------------------
+
+This program will ask '''+str(len(questionAndAnswerDict))+''' questions.\nYou will respond to each question with a\nnumber 1 through 5. The number 1 means you\ndisagree while the number 5 means you highly\nagree.At the end you wil be given your final\nscore and match maker percentage.
+''')
+
+
 ## MAIN PROGRAM
-for question_num in range(0,5):
-    print("Asking question", str(question_num+1), ".")
-    question, answer, weight, user_answer = questionAndAnswerDict[question_num][0], questionAndAnswerDict[question_num][1], questionAndAnswerDict[question_num][2], 0
+for question_num in range(0,len(questionAndAnswerDict)): # Ask all questions in the dictionary; in order.
+    question, answer, weight, user_answer = questionAndAnswerDict[question_num][0], questionAndAnswerDict[question_num][1], questionAndAnswerDict[question_num][2], 0 # Multi-Assignment of question, answer, weight and placeholder for user_score.
     print('\n')
     print("Question:", question)
     while user_answer not in [1,2,3,4,5]:
@@ -43,18 +52,26 @@ for question_num in range(0,5):
             print("[ERROR]: There was an unknown error. Please try entering in an integer from 1 to 5:", error)
         print("[ERROR]: You need to enter an INTEGER from 1 to 5...") 
     
-    user_score += user_answer * weight
+    user_score += abs(answer - user_answer) * weight # Calculate the running total of points the user has accumulated. Abs prevents negatives.
+    total_available += answer*weight # Calculate the total points available based on the dictionary of questions. Adding/Removing/Editing questions require no code change.
+
+user_score = total_available - user_score # Obtain true user score by subtracting their score from the total score available.
 
 
 ## SCORE OUTPUT/REMARKS
-print("You scored", str(user_score), "points out of the possible 100 available.")
-if user_score < 50:
-    print("Probably not the best match...")
-elif user_score < 70:
-    print("This seems like we would be better off without eachother...")
-elif user_score < 90:
-    print("This could really work out!")
-elif user_score > 90:
-    print("Perfect")
+print(f"\n\nMatch Percent: {user_score/total_available*100:.2f}%.\nYou scored", str(user_score), "points out of the possible", str(total_available), "available.")
+if user_score < total_available*0.5: # <50% match
+    print("Maybe we would be better off never talking again...")
+elif user_score < total_available*0.7: # <70% match
+    print("I'm thinking we're just friends...")
+elif user_score < total_available*0.9: # <90% match
+    print("This could really work out...")
+elif user_score > total_available*0.9: # >90% match
+    print("Perfect!")
 print('\n'*2)
-input('Press Enter to close this window...')
+print('''
+--------------------------------------
+--          MATCHMAKER 1.0          --
+--------------------------------------
+''')
+input('Thank you for using Match Maker 1.0\nPress Enter to close this window...')
