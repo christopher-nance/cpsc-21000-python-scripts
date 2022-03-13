@@ -5,7 +5,7 @@ description         :numbers assignment...
 author              :Chris Nance
 date                :2022-03-13
 version             :1.0
-usage               :python numbers_nance.py
+usage               :python numbers_nance.py <int>
 notes               :
 python_version      :3.10
 #==============================================================================#
