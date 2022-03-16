@@ -20,6 +20,7 @@ guesses = 0
 keepPlaying = 'Y'
 wordToGuess = ''
 
+
 ## LISTS
 previousGuesses = [] # // with below
 
@@ -52,11 +53,10 @@ def printGameBoard():
 ## SETUP
 # Import all words into a single list.
 for line in open(wordlist_file, 'r'):
-    wordlist.append(line.strip())
+    wordlist.append(line.strip()) #Import all words without any whitespace if there is any using strip to a list.
 
 
 ## MAIN | *=good X=bad ~=wrong spot
-
 while keepPlaying.lower() == 'y':
     print('\n'*20)
     header()
@@ -64,9 +64,12 @@ while keepPlaying.lower() == 'y':
     guesses = 0
     wordToGuess = wordlist[randint(0, len(wordlist)-1)].lower()
     while guesses < 6:
-#        print("WORD TO GUESS:", wordToGuess, 'split:', wordToGuess.split())
+        print("WORD TO GUESS:", wordToGuess, 'SPLIT:', [char for char in wordToGuess])
         print("You have", str(6-guesses), 'guesses left.')
         guess = input("Enter your guess: ").lower()
+        while len(guess) != 5:
+            print("Oops, you need to enter a word that is no more or less than 5 characters long.")
+            guess = input("Enter your guess: ").lower()
         if guess in wordlist:
             # Player's Guess was a word in the list.
             guesses += 1
