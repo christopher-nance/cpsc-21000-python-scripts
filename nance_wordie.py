@@ -64,10 +64,10 @@ while keepPlaying.lower() == 'y':
     guesses = 0
     wordToGuess = wordlist[randint(0, len(wordlist)-1)].lower()
     while guesses < 6:
-        print("WORD TO GUESS:", wordToGuess, 'SPLIT:', [char for char in wordToGuess])
+#        print("WORD TO GUESS:", wordToGuess, 'SPLIT:', [char for char in wordToGuess])
         print("You have", str(6-guesses), 'guesses left.')
         guess = input("Enter your guess: ").lower()
-        while len(guess) != 5:
+        while len(guess) != 5: # Input Validation
             print("Oops, you need to enter a word that is no more or less than 5 characters long.")
             guess = input("Enter your guess: ").lower()
         if guess in wordlist:
