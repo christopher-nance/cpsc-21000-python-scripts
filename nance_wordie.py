@@ -100,3 +100,5 @@ while keepPlaying.lower() == 'y':
             print("Sorry, that word is not in the word list. Try again. (No guesses were used)")
     print('\n'*2)
     keepPlaying = input("Press Y to keep playing or any other key to exit.")
+
+print("Goodbye!")
