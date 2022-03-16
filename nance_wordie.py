@@ -64,7 +64,7 @@ while keepPlaying.lower() == 'y':
     guesses = 0
     wordToGuess = wordlist[randint(0, len(wordlist)-1)].lower()
     while guesses < 6:
-        print("WORD TO GUESS:", wordToGuess, 'split:', wordToGuess.split())
+#        print("WORD TO GUESS:", wordToGuess, 'split:', wordToGuess.split())
         print("You have", str(6-guesses), 'guesses left.')
         guess = input("Enter your guess: ").lower()
         if guess in wordlist:
