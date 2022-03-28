@@ -6,7 +6,7 @@ author              :Chris Nance
 date                :2022-03-28
 version             :1.0
 usage               :python nance_chris_grade_report.py
-notes               :
+notes               :scuffed
 python_version      :3.10
 #=====================================================================#
 '''
