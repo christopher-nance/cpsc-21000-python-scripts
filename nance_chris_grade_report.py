@@ -50,20 +50,23 @@ semesterName = ['', '']
 semesterGPA = [0, 100]
 gpas = []
 
-outputList = [['Semester', 'Hours', 'Points', 'GPA', 'Standing'], ['-----------------------------------------------------------------', '', '', '', '']]
+outputList = [ # Python mini language for strings allows me to take this list of lists and format it into a table. Some little placeholders like the dashes allow for the spacers to be added by using the giant list, additionaly empty strings are needed when the minilanguage is used towards the bnottom of the script.
+['Semester', 'Hours', 'Points', 'GPA', 'Standing'], 
+['----------------------------------------------------------------------', '', '', '', '']
+]
 outputParts = []
 grades = ['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F']
 gradesBreakdown = [[],[],[],[],[],[],[],[],[],[],[],[]] #A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F
 
 
 def appendToOutputList():
-    outputParts.append(str(totalCreditHours))
-    outputParts.append(str(totalQualityPoints))
-    outputParts.append(round(totalQualityPoints/totalCreditHours, 2))
+    outputParts.append(str(totalCreditHours)) ## Append Credit Hours
+    outputParts.append(str('{:0.2f}'.format(totalQualityPoints))) ## Append Points
+    outputParts.append('{:0.2f}'.format(round(totalQualityPoints/totalCreditHours, 2))) ## Append GPA
     if round(totalQualityPoints/totalCreditHours, 2) > 3.5:
-        outputParts.append("DEAN'S LIST")
-    else: outputParts.append('') # Placeholder string for the output.
-    outputList.append(outputParts)
+        outputParts.append("DEAN'S LIST") ## Append Dean's List
+    else: outputParts.append('') # Placeholder string for the output if not on Dean's List.
+    outputList.append(outputParts) # Send packaged semester output off to the compiled outputList.
     if totalQualityPoints/totalCreditHours > semesterGPA[0]: # Best GPA: 0
         semesterName[0] = outputParts[0]
         semesterGPA[0] = totalQualityPoints/totalCreditHours
@@ -119,13 +122,13 @@ while line: # While there are still lines to be read...
 
 ## OUTPUT
 appendToOutputList() # Appends the last 'semester' of data to my output list.
-outputList.append(['-----------------------------------------------------------------', '', '', '', '']) # Spacer for semesters and the Cumulative tail.
+outputList.append(['----------------------------------------------------------------------', '', '', '', '']) # Spacer for semesters and the Cumulative tail.
 if round(runningTotalPoints/runningTotalHours , 2) > 3.5: # Determine HONORS note.
-    outputList.append(['Cumulative', runningTotalHours, runningTotalPoints, round(runningTotalPoints/runningTotalHours , 2), 'HONORS'])
+    outputList.append(['Cumulative', runningTotalHours, '{:0.2f}'.format(runningTotalPoints), '{:0.2f}'.format(round(runningTotalPoints/runningTotalHours , 2)), 'HONORS'])
 else:
-    outputList.append(['Cumulative', runningTotalHours, runningTotalPoints, round(runningTotalPoints/runningTotalHours, 2), ''])
+    outputList.append(['Cumulative', runningTotalHours, '{:0.2f}'.format(runningTotalPoints), '{:0.2f}'.format(round(runningTotalPoints/runningTotalHours , 2)), ''])
 print('\n')
-for item in outputList: print("{: <15} {: >7} {: >13} {: >13} {: >13}".format(*item)) # print my output list like a table.
+for item in outputList: print("{: <15} {: >7} {: >13} {: >13} {: >18}".format(*item)) # print my output list like a table.
 print('\n')
 print('Your best semester was', semesterName[0].upper(), '\nYour worst semester was', semesterName[1].upper(), '\n') #Print the best semesters.
 print('Here is a breakdown of your classes by grades...')
