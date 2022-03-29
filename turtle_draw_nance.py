@@ -1,11 +1,11 @@
 info = '''
 #==============================================================================#
-title               :TurtleDraw_cn.py
+title               :turtle_draw_nance.py
 description         :turtle draw assignment
 author              :Chris Nance
 date                :2022-03-26
 version             :1.1
-usage               :python TurtleDraw_cn.py
+usage               :python turtle_draw_nance.py
 notes               :
 python_version      :3.10
 #==============================================================================#
