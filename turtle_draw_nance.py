@@ -4,7 +4,7 @@ title               :TurtleDraw_cn.py
 description         :turtle draw assignment
 author              :Chris Nance
 date                :2022-03-26
-version             :1.0
+version             :1.1
 usage               :python TurtleDraw_cn.py
 notes               :
 python_version      :3.10
@@ -32,7 +32,14 @@ totalDistance = 0
 countDistance = False
 
 
+## INITIAL TURTLE SETUP
+pen.speed(penSpeed)
+pen.penup()
+turtle.setup(boxSize, boxSize)
+
+
 ## INPUT VALIDATION
+print(info+'\n')
 while input_validated == False:
     try:
         input_file = input("Enter the name of the file you want to open: ")
@@ -43,12 +50,6 @@ while input_validated == False:
         print("File Not Found:", error, "\n")
     except Exception as error:
         print("No good:", error, "\n")
-
-
-## INITIAL TURTLE SETUP
-pen.speed(penSpeed)
-pen.penup()
-turtle.screensize(boxSize, boxSize)
 
 
 ## MAIN SCRIPT
