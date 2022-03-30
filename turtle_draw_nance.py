@@ -1,11 +1,11 @@
 info = '''
 #==============================================================================#
-title               :TurtleDraw_cn.py
+title               :turtle_draw_nance.py
 description         :turtle draw assignment
 author              :Chris Nance
 date                :2022-03-26
-version             :1.0
-usage               :python TurtleDraw_cn.py
+version             :1.1
+usage               :python turtle_draw_nance.py
 notes               :
 python_version      :3.10
 #==============================================================================#
@@ -32,8 +32,17 @@ totalDistance = 0
 countDistance = False
 
 
-## INPUT VALIDATION
+## INITIAL TURTLE SETUP
+pen.speed(penSpeed)
+pen.penup()
+turtle.setup(boxSize, boxSize)
 
+
+## INPUT VALIDATION
+<<<<<<< HEAD
+
+=======
+>>>>>>> ddace29994de0069a646052a26f3ab269c40d5de
 print(info+'\n')
 while input_validated == False:
     try:
@@ -47,12 +56,15 @@ while input_validated == False:
         print("No good:", error, "\n")
 
 
+<<<<<<< HEAD
 ## INITIAL TURTLE SETUP
 pen.speed(penSpeed)
 pen.penup()
 turtle.setup(boxSize, boxSize)
 
 
+=======
+>>>>>>> ddace29994de0069a646052a26f3ab269c40d5de
 ## MAIN SCRIPT
 line = output_file.readline()
 while line:
