@@ -33,6 +33,8 @@ countDistance = False
 
 
 ## INPUT VALIDATION
+
+print(info+'\n')
 while input_validated == False:
     try:
         input_file = input("Enter the name of the file you want to open: ")
@@ -48,7 +50,7 @@ while input_validated == False:
 ## INITIAL TURTLE SETUP
 pen.speed(penSpeed)
 pen.penup()
-turtle.screensize(boxSize, boxSize)
+turtle.setup(boxSize, boxSize)
 
 
 ## MAIN SCRIPT
