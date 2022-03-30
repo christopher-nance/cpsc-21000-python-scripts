@@ -1,15 +1,32 @@
 info = '''
 #==============================================================================#
-title               :turtle_draw_nance.py
+title               :turtle_draw_demo.py
 description         :turtle draw assignment
 author              :Chris Nance
-date                :2022-03-26
-version             :1.1
-usage               :python turtle_draw_nance.py
-notes               :
+date                :2022-03-30
+version             :1.0
+usage               :python turtle_draw_demo.py
+notes               :Used for DEMO in class
 python_version      :3.10
 #==============================================================================#
 '''
+
+## INPUT VALIDATION
+print(info+'\n')
+input_file = r""
+output_file = ''
+input_validated = False
+while input_validated == False:
+    try:
+        input_file = input("Enter the name of the file you want to open: ")
+        output_file = open(input_file, 'r')
+        input_validated = True
+        print("File has been loaded into memory!\n")
+    except FileNotFoundError as error:
+        print("File Not Found:", error, "\n")
+    except Exception as error:
+        print("No good:", error, "\n")
+
 
 ## MODULES
 import turtle
@@ -21,9 +38,6 @@ boxSize = 450 # Window size
 penSpeed = 0 # Max Speed is in-fact 0, not 10.
 
 #> Leave these alone...
-input_validated = False
-input_file = r""
-output_file = ''
 pen = turtle.Turtle()
 counter = 0
 prev_xPoint = 0
@@ -36,20 +50,6 @@ countDistance = False
 pen.speed(penSpeed)
 pen.penup()
 turtle.setup(boxSize, boxSize)
-
-
-## INPUT VALIDATION
-print(info+'\n')
-while input_validated == False:
-    try:
-        input_file = input("Enter the name of the file you want to open: ")
-        output_file = open(input_file, 'r')
-        input_validated = True
-        print("File has been loaded into memory!\n")
-    except FileNotFoundError as error:
-        print("File Not Found:", error, "\n")
-    except Exception as error:
-        print("No good:", error, "\n")
 
 
 ## INITIAL TURTLE SETUP
