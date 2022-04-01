@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match-Maker</title>
+</head>
+
+<!--
+    Christopher M Nance (christophermnance@lewisu.edu)
+    Matchmaker (For the Web)
+
+    Open Source
+-->
+
+<body>
+    <h1>MatchMaker</h1>
+    <p>Place the instructions for the webapplication here.</p>
+    
+    <label>This is a question for the person...</label><br />
+    <select id="question1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Indifferent</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>This is a question for the person...</label><br />
+    <select id="question2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Indifferent</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>This is a question for the person...</label><br />
+    <select id="question3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Indifferent</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>This is a question for the person...</label><br />
+    <select id="question4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Indifferent</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>This is a question for the person...</label><br />
+    <select id="question5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Indifferent</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br /><br /><br /><br />
+    <button onclick="calculateCompatibility()">Calculate Compatibility</button>
+    <p id="compatibility"></p>
+
+    <script>
+        // JAVA-SCRIPT
+        console.log('Starting Matchmaker...')
+
+        // Button Function
+        function calculateCompatibility() {
+            console.log('Calling the function calculateCompatibility()')
+
+            // Constants
+            const DESIRED_RESPONCE = [
+                5, /* Question 1 - Strongly Agree */
+                4, /* Question 2 - Agree */
+                3, /* Question 3 - Indifferent */
+                2, /* Question 4 - Disagree */
+                1, /* Question 5 - Strongly Disagree */
+            ]
+
+            const MAX_SCORE = 25
+
+            // Gather information from inputs
+            let responce1 = document.getElementById('question1').selectedOptions[0].value
+            let responce2 = document.getElementById('question2').selectedOptions[0].value
+            let responce3 = document.getElementById('question3').selectedOptions[0].value
+            let responce4 = document.getElementById('question4').selectedOptions[0].value
+            let responce5 = document.getElementById('question5').selectedOptions[0].value
+
+            // Maths
+            let question1Compatibility = 5 - Math.abs(responce1 - DESIRED_RESPONCE[0])
+            let question2Compatibility = 5 - Math.abs(responce2 - DESIRED_RESPONCE[1])
+            let question3Compatibility = 5 - Math.abs(responce3 - DESIRED_RESPONCE[2])
+            let question4Compatibility = 5 - Math.abs(responce4 - DESIRED_RESPONCE[3])
+            let question5Compatibility = 5 - Math.abs(responce5 - DESIRED_RESPONCE[4])
+            
+            compatibility = Math.round((question1Compatibility+question2Compatibility+question3Compatibility+question4Compatibility+question5Compatibility) * (100/MAX_SCORE))
+            
+            // Output
+            console.log('Responce inputs', responce1, responce2, responce3, responce4, responce5)
+            console.log('Compatibility Scores by Question', question1Compatibility, question2Compatibility, question3Compatibility, question4Compatibility, question5Compatibility)
+            console.log('Compiled Compatibility Score ', compatibility)
+
+            document.getElementById('compatibility').innerHTML = 'SCORE: PLACEHOLDER'
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>
