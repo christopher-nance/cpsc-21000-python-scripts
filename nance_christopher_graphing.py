@@ -20,6 +20,7 @@ yRange = []
 
 newFigNumber = 1
 
+
 ## GUI SETUP
 def make_window():
 
@@ -66,38 +67,48 @@ def validateInput(values): #Pass values from the GUI Window.read(); returns True
 
 ## MatPlotLib stuff
 def button_Plot(values):
-    print("Button Done Pressed ::: plotting")
-    xRange.clear()
-    yRange.clear()
+    global newFigNumber
+    newFigure = pyplot.figure(newFigNumber) # Create a new figure with a random 3-digit integer ID.
+
     if values['linear'] == True:
+        xRange.clear()
+        yRange.clear()
         for num in range(int(values['min-xValue']), int(values['max-xValue'])+1):
             xRange.append(num)
             yRange.append(num)
-        pyplot.plot(xRange, yRange)
+        pyplot.plot(xRange, yRange, 'm', label='Linear')
     if values['quadratic'] == True:
+        xRange.clear()
+        yRange.clear()
         for num in range(int(values['min-xValue']), int(values['max-xValue'])+1):
             xRange.append(num)
             yRange.append(num**2)
-        pyplot.plot(xRange, yRange)
+        pyplot.plot(xRange, yRange, 'y', label='Quadratic')
     if values['cubic'] == True:
+        xRange.clear()
+        yRange.clear()
         for num in range(int(values['min-xValue']), int(values['max-xValue'])+1):
             xRange.append(num)
             yRange.append(num**3)
-        pyplot.plot(xRange, yRange)
+        pyplot.plot(xRange, yRange, 'g', label='Cubic')
     if values['logarithmic'] == True:
+        xRange.clear()
+        yRange.clear()
         for num in range(int(values['min-xValue']), int(values['max-xValue'])+1):
             xRange.append(num)
             yRange.append(math.log(num))
-        pyplot.plot(xRange, yRange)
+        pyplot.plot(xRange, yRange, 'r', label='Logarithmic')
     if values['linearithmic'] == True:
+        xRange.clear()
+        yRange.clear()
         for num in range(int(values['min-xValue']), int(values['max-xValue'])+1):
             xRange.append(num)
             yRange.append(num*math.log(num))
-        pyplot.plot(xRange, yRange)
-    
-    newFigure = pyplot.figure(newFigNumber) # Create a new figure with a random 3-digit integer ID.
+        pyplot.plot(xRange, yRange, 'b', label='Linearithmic')
+
     newFigNumber += 1
 
+    pyplot.legend(['Linenar', 'Quadratic', 'Cubic', 'Logarithmic', 'Linearithmic'])
     pyplot.show()
 
 
