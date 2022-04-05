@@ -6,7 +6,7 @@ author              :Chris Nance
 date                :2022-04-04
 version             :1.0
 usage               :python nance_christopher_graphing.py
-notes               :
+notes               :Negatives CAN be used but only with Linear/Quadratic/Cubic
 python_version      :3.10
 #==============================================================================#
 '''
