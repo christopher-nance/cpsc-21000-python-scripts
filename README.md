@@ -1,6 +1,5 @@
 # Python Scripts
 ## Developer: Chris Nance
-## License: None, use whatever for whatever. I don't care.
 
 ## Description:
 
