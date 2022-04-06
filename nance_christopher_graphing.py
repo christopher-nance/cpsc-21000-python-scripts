@@ -68,7 +68,8 @@ def validateInput(values): #Pass values from the GUI Window.read(); returns True
 ## MatPlotLib stuff
 def button_Plot(values):
     global newFigNumber
-    newFigure = pyplot.figure(newFigNumber) # Create a new figure with a random 3-digit integer ID.
+    
+    pyplot.figure(newFigNumber) # Create a new figure with a random 3-digit integer ID.
 
     if values['linear'] == True:
         xRange.clear()
