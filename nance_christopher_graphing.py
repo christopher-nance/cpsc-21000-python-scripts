@@ -72,11 +72,6 @@ def validateInput(values): #Pass values from the GUI Window.read(); returns True
 
 ## MatPlotLib stuff
 def button_Plot(values):
-<<<<<<< HEAD
-    global newFigNumber
-    
-    pyplot.figure(newFigNumber) # Create a new figure with a random 3-digit integer ID.
-=======
     global newFigNumber # Not using this breaks the function...
     pyplot.figure(newFigNumber) # Create a new figure (to keep from replotting on the same figure)
     legend = [] # Define an empty list for the legend.
@@ -92,7 +87,6 @@ def button_Plot(values):
             yRange.append(num) # ... add the y value (f(num)=num) to the y-values list of points called yRange.
         pyplot.plot(xRange, yRange, 'b', label='Linear') # Plot the data from xRange and yRange using color magenta and the label 'Linear'.
         legend.append('Linear') # Add 'Linear' to the legend list to add to the legend later.
->>>>>>> 3e7cc0b7779bbb677ba6989e809c3020d503ae3c
 
     if values['quadratic'] == True:
         xRange.clear()
