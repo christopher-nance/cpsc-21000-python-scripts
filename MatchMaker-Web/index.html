@@ -23,6 +23,7 @@
     
     <label>This is a question for the person...</label><br />
     <select id="question1">
+        <option value="null"></option>
         <option value="5">Strongly Agree</option>
         <option value="4">Agree</option>
         <option value="3">Indifferent</option>
@@ -32,6 +33,7 @@
     <br /><br />
     <label>This is a question for the person...</label><br />
     <select id="question2">
+        <option value="null"></option>
         <option value="5">Strongly Agree</option>
         <option value="4">Agree</option>
         <option value="3">Indifferent</option>
@@ -41,6 +43,7 @@
     <br /><br />
     <label>This is a question for the person...</label><br />
     <select id="question3">
+        <option value="null"></option>
         <option value="5">Strongly Agree</option>
         <option value="4">Agree</option>
         <option value="3">Indifferent</option>
@@ -50,6 +53,7 @@
     <br /><br />
     <label>This is a question for the person...</label><br />
     <select id="question4">
+        <option value="null"></option>
         <option value="5">Strongly Agree</option>
         <option value="4">Agree</option>
         <option value="3">Indifferent</option>
@@ -59,6 +63,7 @@
     <br /><br />
     <label>This is a question for the person...</label><br />
     <select id="question5">
+        <option value="null"></option>
         <option value="5">Strongly Agree</option>
         <option value="4">Agree</option>
         <option value="3">Indifferent</option>
@@ -73,6 +78,10 @@
     <script>
         // JAVA-SCRIPT
         console.log('Starting Matchmaker...')
+
+        function validation(value) {
+            return value === 'null'
+        }
 
         // Button Function
         function calculateCompatibility() {
@@ -95,22 +104,29 @@
             let responce3 = document.getElementById('question3').selectedOptions[0].value
             let responce4 = document.getElementById('question4').selectedOptions[0].value
             let responce5 = document.getElementById('question5').selectedOptions[0].value
-
-            // Maths
-            let question1Compatibility = 5 - Math.abs(responce1 - DESIRED_RESPONCE[0])
-            let question2Compatibility = 5 - Math.abs(responce2 - DESIRED_RESPONCE[1])
-            let question3Compatibility = 5 - Math.abs(responce3 - DESIRED_RESPONCE[2])
-            let question4Compatibility = 5 - Math.abs(responce4 - DESIRED_RESPONCE[3])
-            let question5Compatibility = 5 - Math.abs(responce5 - DESIRED_RESPONCE[4])
+            const RESPONCES = [responce1,responce2,responce3,responce4,responce5]
             
-            compatibility = Math.round((question1Compatibility+question2Compatibility+question3Compatibility+question4Compatibility+question5Compatibility) * (100/MAX_SCORE))
             
-            // Output
-            console.log('Responce inputs', responce1, responce2, responce3, responce4, responce5)
-            console.log('Compatibility Scores by Question', question1Compatibility, question2Compatibility, question3Compatibility, question4Compatibility, question5Compatibility)
-            console.log('Compiled Compatibility Score ', compatibility)
 
-            document.getElementById('compatibility').innerHTML = 'SCORE: PLACEHOLDER'
+            if (RESPONCES.every(validation) === false) {
+                // Maths
+                let question1Compatibility = 5 - Math.abs(responce1 - DESIRED_RESPONCE[0])
+                let question2Compatibility = 5 - Math.abs(responce2 - DESIRED_RESPONCE[1])
+                let question3Compatibility = 5 - Math.abs(responce3 - DESIRED_RESPONCE[2])
+                let question4Compatibility = 5 - Math.abs(responce4 - DESIRED_RESPONCE[3])
+                let question5Compatibility = 5 - Math.abs(responce5 - DESIRED_RESPONCE[4])
+                
+                compatibility = Math.round((question1Compatibility+question2Compatibility+question3Compatibility+question4Compatibility+question5Compatibility) * (100/MAX_SCORE))
+                
+                // Output
+                console.log('Responce inputs', responce1, responce2, responce3, responce4, responce5)
+                console.log('Compatibility Scores by Question', question1Compatibility, question2Compatibility, question3Compatibility, question4Compatibility, question5Compatibility)
+                console.log('Compiled Compatibility Score ', compatibility)
+
+                document.getElementById('compatibility').innerHTML = 'SCORE: PLACEHOLDER'
+            } else {
+                document.getElementById('compatibility').innerHTML = 'Uh Oh, you need to answer ALL questions.'
+            }
         }
 
 
