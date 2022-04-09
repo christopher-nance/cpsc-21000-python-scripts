@@ -18,12 +18,13 @@
 -->
 
 <body>
-    <h1>MatchMaker</h1>
+    <h1 class="titleh1">MatchMaker</h1>
+    <h2 class="versionheader">Version 1.0 by Chris Nance</h2>
     <p>Place the instructions for the webapplication here.</p>
     
     <div style="text-align:center;width: 400px;margin: 0 auto;border-style: outset;">
         <br>
-        <label>This is a question for the person...</label><br />
+        <label>iPhone is better than Android</label><br />
         <select id="question1">
             <option value="null"></option>
             <option value="5">Strongly Agree</option>
@@ -33,7 +34,7 @@
             <option value="1">Strongly Disagree</option>
         </select>
         <br /><br />
-        <label>This is a question for the person...</label><br />
+        <label>I prefer the outdoors rather than being inside</label><br />
         <select id="question2">
             <option value="null"></option>
             <option value="5">Strongly Agree</option>
@@ -43,7 +44,7 @@
             <option value="1">Strongly Disagree</option>
         </select>
         <br /><br />
-        <label>This is a question for the person...</label><br />
+        <label>Computer Science is one of the coolest fields of study</label><br />
         <select id="question3">
             <option value="null"></option>
             <option value="5">Strongly Agree</option>
@@ -53,7 +54,7 @@
             <option value="1">Strongly Disagree</option>
         </select>
         <br /><br />
-        <label>This is a question for the person...</label><br />
+        <label>Data Science is really fun</label><br />
         <select id="question4">
             <option value="null"></option>
             <option value="5">Strongly Agree</option>
@@ -63,7 +64,7 @@
             <option value="1">Strongly Disagree</option>
         </select>
         <br /><br />
-        <label>This is a question for the person...</label><br />
+        <label>I like all four seasons, rather than just being hot all the time</label><br />
         <select id="question5">
             <option value="null"></option>
             <option value="5">Strongly Agree</option>
@@ -95,11 +96,11 @@
 
             // Constants
             const DESIRED_RESPONCE = [
-                5, /* Question 1 - Strongly Agree */
+                4, /* Question 1 - Agree */
                 4, /* Question 2 - Agree */
-                3, /* Question 3 - Indifferent */
-                2, /* Question 4 - Disagree */
-                1, /* Question 5 - Strongly Disagree */
+                5, /* Question 3 - Strongly Agree */
+                1, /* Question 4 - Strongly Disagree */
+                2, /* Question 5 - Disagree */
             ]
 
             const ANSWER_OUTPUT = [
