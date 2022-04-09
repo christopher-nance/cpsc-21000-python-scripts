@@ -21,59 +21,65 @@
     <h1>MatchMaker</h1>
     <p>Place the instructions for the webapplication here.</p>
     
-    <label>This is a question for the person...</label><br />
-    <select id="question1">
-        <option value="null"></option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Indifferent</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-    <br /><br />
-    <label>This is a question for the person...</label><br />
-    <select id="question2">
-        <option value="null"></option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Indifferent</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-    <br /><br />
-    <label>This is a question for the person...</label><br />
-    <select id="question3">
-        <option value="null"></option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Indifferent</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-    <br /><br />
-    <label>This is a question for the person...</label><br />
-    <select id="question4">
-        <option value="null"></option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Indifferent</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-    <br /><br />
-    <label>This is a question for the person...</label><br />
-    <select id="question5">
-        <option value="null"></option>
-        <option value="5">Strongly Agree</option>
-        <option value="4">Agree</option>
-        <option value="3">Indifferent</option>
-        <option value="2">Disagree</option>
-        <option value="1">Strongly Disagree</option>
-    </select>
-
-    <br /><br /><br /><br />
-    <button onclick="calculateCompatibility()">Calculate Compatibility</button>
-    <p id="compatibility"></p>
+    <div style="text-align:center;width: 400px;margin: 0 auto;border-style: outset;">
+        <br>
+        <label>This is a question for the person...</label><br />
+        <select id="question1">
+            <option value="null"></option>
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Indifferent</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+        <label>This is a question for the person...</label><br />
+        <select id="question2">
+            <option value="null"></option>
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Indifferent</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+        <label>This is a question for the person...</label><br />
+        <select id="question3">
+            <option value="null"></option>
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Indifferent</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+        <label>This is a question for the person...</label><br />
+        <select id="question4">
+            <option value="null"></option>
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Indifferent</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+        <label>This is a question for the person...</label><br />
+        <select id="question5">
+            <option value="null"></option>
+            <option value="5">Strongly Agree</option>
+            <option value="4">Agree</option>
+            <option value="3">Indifferent</option>
+            <option value="2">Disagree</option>
+            <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+        <div style="text-align: center;">
+            <p class="compatibilityscore" id="compatibility"></p>
+        </div>
+        <br /><br />
+        <button class="glowhover" id="calcCompatibility" onclick="calculateCompatibility()">Calculate Score</button>
+        <br /><br />
+    </div>
 
     <script>
         // JAVA-SCRIPT
@@ -96,6 +102,14 @@
                 1, /* Question 5 - Strongly Disagree */
             ]
 
+            const ANSWER_OUTPUT = [
+                'Marry me!', /* 90% */
+                'Wow we are a pretty good match!',/* 70% */
+                'Maybe we should just be friends...',/* 60% */
+                'Eh... I dont think so.',/* 50% */
+                'Go away.'/* less than 50% */
+            ]
+
             const MAX_SCORE = 25
 
             // Gather information from inputs
@@ -108,7 +122,7 @@
             
             
 
-            if (RESPONCES.every(validation) === false) {
+            if (RESPONCES.every(validation) === false) { // Input Validation (Because we use blank answers as the default)
                 // Maths
                 let question1Compatibility = 5 - Math.abs(responce1 - DESIRED_RESPONCE[0])
                 let question2Compatibility = 5 - Math.abs(responce2 - DESIRED_RESPONCE[1])
@@ -123,7 +137,22 @@
                 console.log('Compatibility Scores by Question', question1Compatibility, question2Compatibility, question3Compatibility, question4Compatibility, question5Compatibility)
                 console.log('Compiled Compatibility Score ', compatibility)
 
-                document.getElementById('compatibility').innerHTML = 'SCORE: PLACEHOLDER'
+                if (compatibility < 50) {
+                    document.getElementById('compatibility').innerHTML = (ANSWER_OUTPUT[4] + ' You are '+ compatibility+ '% compatible with me. ')
+                }
+                if (compatibility > 50) {
+                    document.getElementById('compatibility').innerHTML = (ANSWER_OUTPUT[3] + ' You are '+ compatibility+ '% compatible with me. ')
+                }
+                if (compatibility > 60) {
+                    document.getElementById('compatibility').innerHTML = (ANSWER_OUTPUT[2] + ' You are '+ compatibility+ '% compatible with me. ')
+                }
+                if (compatibility > 70) {
+                    document.getElementById('compatibility').innerHTML = (ANSWER_OUTPUT[1] + ' You are '+ compatibility+ '% compatible with me. ')
+                }
+                if (compatibility > 90) {
+                    document.getElementById('compatibility').innerHTML = (ANSWER_OUTPUT[0] + ' You are '+ compatibility+ '% compatible with me. ')
+                }
+
             } else {
                 document.getElementById('compatibility').innerHTML = 'Uh Oh, you need to answer ALL questions.'
             }

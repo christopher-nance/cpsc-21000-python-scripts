@@ -2,13 +2,19 @@
 
 /* Colors */
 
-html {
-    background-color: rgb(46, 46, 46);
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #000;
 }
 
 h1 {
     display: block;
-    font-size: 2em;
+    font-size: 4em;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
     margin-inline-start: 0px;
@@ -19,7 +25,7 @@ h1 {
 }
 
 select {
-    writing-mode: horizontal-tb !important;
+    writing-mode: horizontal-tb;
     font-style: 'serpentine';
     text-rendering: auto;
     color: -internal-light-dark(black, white);
@@ -44,9 +50,78 @@ select {
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
     border-radius: 0px;
+    font-size: 1.5em;
 }
 
 label {
     text-align: center;
-    color: aqua;
+    color: rgb(185, 159, 255);
+    font-size: 1.5em;
+}
+
+.compatibilityscore {
+    color:#00ffd5;
+    font-size: medium;
+    font-style:oblique;
+}
+
+.glowhover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 1.3em;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glowhover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000); /* Make a rainbow for the button when clicking it */
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glowhover:active {
+    color: #000
+}
+
+.glowhover:active:after {
+    background: transparent;
+}
+
+.glowhover:hover:before {
+    opacity: 1;
+}
+
+.glowhover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing { /* function to 'glow' the button, stepping it up 3 times from 0 --> 50 --> 100 and back down in reverse.  and is looped for ever when clicked down */
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
