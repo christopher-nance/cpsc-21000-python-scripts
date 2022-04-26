@@ -52,18 +52,24 @@ def validate_input(height_inches, weight, age, sysbp, diabp):
     except:
         return 'Verify your diabp was typed in correctly with only non-negative integers.'
     
+    if int(age) < 0: return 'Your age cannot be less than 0.'
+    if int(height_inches) < 36 or int(height_inches) > 120: return 'You cant possibly be this tall...'
+    if int(age) > 120: return 'You cant possibly be this old...'
+    if int(sysbp) > 200 or int(sysbp) < 20: return 'You cant possibly have this type of systolic blood pressure'
+    if int(diabp) > 200 or int(diabp) < 20: return 'Your diabp is a bit too high. Are you sure you typed it in right?'
+
     return True
     
 
 def createWindow():
 
     elements = [
-        [sg.Text("Please enter the information asked below to the best of your knowledge:", justification='center')],
-        [sg.Text("Enter your Height in WHOLE Inches: "), sg.Input(key='height')],
-        [sg.Text("Enter your Weight in Pounds: "), sg.Input(key='weight')],
-        [sg.Text("Enter your Current Age: "), sg.Input(key='age')],
-        [sg.Text("Enter your Systolic Blood Pressure: "), sg.Input(key='sysbp')],
-        [sg.Text("Enter your Diastolic Blood Pressure: "), sg.Input(key='diabp')],
+        [sg.Text("Please enter the information asked below to the best of your knowledge then hit Submit:", justification='center')],
+        [sg.Text("Enter your Height in WHOLE Inches: "), sg.Input(key='height', size=(3,0))],
+        [sg.Text("Enter your Weight in Pounds: "), sg.Input(key='weight', size=(3,0))],
+        [sg.Text("Enter your Current Age: "), sg.Input(key='age', size=(3,0))],
+        [sg.Text("Enter your Systolic Blood Pressure: "), sg.Input(key='sysbp', size = (3,0))],
+        [sg.Text("Enter your Diastolic Blood Pressure: "), sg.Input(key='diabp', size = (3,0))],
 
         [sg.Text("Please check any boxes below if you have history of the following in your family:", justification='center')],
         [sg.Checkbox('Diabetes?', key='diabetes_bool')],
