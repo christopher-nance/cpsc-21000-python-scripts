@@ -15,8 +15,8 @@ python_version      :3.10
 import datetime
 import PySimpleGUI as sg
 
-AMD_Series = ['Ryzen', 'Threadripper', 'Other'] #   AMD CPU Series
-Intel_Series = ['Core', 'Xeon', 'Other'] #          Intel CPU Series
+AMD_Series = ['Ryzen', 'Threadripper', 'Athlon', 'EPYC', 'Other'] #             AMD CPU Series
+Intel_Series = ['Core', 'Xeon', 'Pentium', 'Celeron', 'Atom', 'Other'] #        Intel CPU Series
 CPUs = [] # Class Objects of CPUs. 
 
 multilineString = '' # Placeholder for creating the string that gets 'updated' on the GUI (see lines 116-124)
@@ -33,7 +33,7 @@ def createWindow(): # Create the window for the main Gui Frame
         [sg.Text('CPU Base Clock Speed  (GHz):'), sg.Input(size=(5,0), key='base_speed')],
         [sg.Text('CPU Boost Clock Speed (GHz):'), sg.Input(size=(5,0), key='boost_speed')],
         [sg.Text('Year Introduced:'), sg.Input(size=(4,0), key='year')],
-        [sg.OK(), sg.CloseButton('Close'), sg.Save('Save to File', key='save')],
+        [sg.OK(), sg.CloseButton('Close'), sg.Save('Save to File', key='save'), sg.Button('Clear List', key='clear')],
         [sg.Multiline('', key='cpu_list', size=(325,300))]
     ]
 
@@ -87,22 +87,25 @@ class CPU: # Create a class called CPU for creating CPU Objects
         self.year = int(year)
     
     def __str__(self):
-        return ('CPU:' + self.manufacturer + ' ' + self.series + ' ' + self.name + '\t' + 'Base/Boost Speeds (GHz):' + str(self.base_speed) + '/' + str(self.boost_speed) + 'GHz\n')
+        return ('CPU: ' + self.manufacturer + ' ' + self.series + ' ' + self.name + '     ' + 'Base/Boost Speeds (GHz): ' + str(self.base_speed) + '/' + str(self.boost_speed) + 'GHz\n')
     
-    def __gt__(self, other): # Allow ython's sort command to sort the CPUs based on CPU base speed.
+    def __gt__(self, other): # Allow python's sort command to sort the CPUs based on CPU base speed.
         return self.base_speed > other.base_speed
     
     def age(self): # Determine how long ago the CPU was released according to the current year for the computer this program runs on.
-        self.cpuAge = int(datetime.datetime.now().year) - self.year
+        return int(datetime.datetime.now().year) - self.year
     
     def speed_delta(self): # Determine the speed difference between the boost clock and the base clock
-        self.cpu_speed_delta = self.boost_speed - self.base_speed
+        return self.boost_speed - self.base_speed
 
 
 
 window = createWindow()
 while True:
     event, values = window.read()
+    if event == 'clear':
+        window['cpu_list'].update('')
+        
     if event == 'manufacturer': # Help maintain valid input by limiting what series are available when selecting the intel or cpu brand./
         if values['manufacturer'] == 'AMD':
             window['series'].update('', AMD_Series)
@@ -117,10 +120,16 @@ while True:
             CPUs.sort(reverse=True) # Reverse sort (SO higher clock speed is better)
             for cpu in CPUs: # Compile a string for the multiline.
                 if multilineString == '':
-                    multilineString = 'Manufacturer:\t\t'+ cpu.manufacturer+ '\nSeries:\t\t'+ cpu.series + '\nName:\t\t' + cpu.name + '\nBase Speed:\t\t' + str(cpu.base_speed) + ' GHz\nBoost Speed:\t\t' + str(cpu.boost_speed) + 'GHz\nYear Introduced:\t\t' + str(cpu.year)
+                    multilineString = 'Manufacturer:\t\t'+ cpu.manufacturer+ '\nSeries:\t\t'+ cpu.series + '\nName:\t\t' + cpu.name + '\nBase Speed:\t\t' + str(cpu.base_speed) + ' GHz\nBoost Speed:\t\t' + str(cpu.boost_speed) + ' GHz\nSpeed Delta:\t\t' + str(round(cpu.speed_delta(), 3)) + ' GHz\nYear Introduced:\t\t' + str(cpu.year)
                 else:
-                    multilineString = multilineString + '\n\nManufacturer:\t\t'+ cpu.manufacturer+ '\nSeries:\t\t'+ cpu.series + '\nName:\t\t' + cpu.name + '\nBase Speed:\t\t' + str(cpu.base_speed) + ' GHz\nBoost Speed:\t\t' + str(cpu.boost_speed) + 'GHz\nYear Introduced:\t\t' + str(cpu.year)
+                    multilineString = multilineString + '\n\nManufacturer:\t\t'+ cpu.manufacturer+ '\nSeries:\t\t'+ cpu.series + '\nName:\t\t' + cpu.name + '\nBase Speed:\t\t' + str(cpu.base_speed) + ' GHz\nBoost Speed:\t\t' + str(cpu.boost_speed) + ' GHz\nSpeed Delta:\t\t' + str(round(cpu.speed_delta(), 3)) + ' GHz\nYear Introduced:\t\t' + str(cpu.year)
             window['cpu_list'].update(multilineString) # Update the multiline.
+            window['manufacturer'].update('')
+            window['name'].update('')
+            window['series'].update('') # These blank ones clear the old text data...
+            window['base_speed'].update('')
+            window['boost_speed'].update('')
+            window['year'].update('')
             multilineString = '' # Reset multiline string placeholder.
         else:
             sg.popup_error('Validation Error', validate(values['manufacturer'], values['name'], values['series'], values['base_speed'], values['boost_speed'], values['year'])) # Validation error popup
